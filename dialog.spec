@@ -95,7 +95,7 @@ Statyczna biblioteka dialog.
 autoconf
 
 CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
-./configure \
+./configure %{_target} \
 	--prefix=/usr
 
 make depend shared all
