@@ -66,7 +66,7 @@ dialog programýný bir kabuk programcýðý içinden çaðýrabilirsiniz.
 Summary:	Libraries and headers files for dialog
 Summary(pl):	Biblioteki i pliki nagó³wkowe dla dialog
 Group:		Development/Libraries
-Requires:	%{name} = %{version}
+Requires:	%{name} = %{epoch}:%{version}
 
 %description devel
 Libraries and header files for dialog.
@@ -78,7 +78,7 @@ Biblioteki i pliki nag³ówkowe dla dialog.
 Summary:	Static dialog library
 Summary(pl):	Statyczna biblioteka dialog
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{version}
+Requires:	%{name}-devel = %{epoch}:%{version}
 
 %description static
 Static dialog library.
