@@ -110,7 +110,7 @@ cp -a samples/* dialog.pl $RPM_BUILD_ROOT/usr/src/examples/%{name}-%{version}
 
 strip --strip-unneeded $RPM_BUILD_ROOT/usr/lib/lib*.so.*.*
 
-gzip -9nf $RPM_BUILD_ROOT/usr/man/man*/* \
+gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* \
 	dialog.lsm README CMDLINE
 
 %clean
@@ -120,7 +120,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc {dialog.lsm,README,CMDLINE}.gz
 %attr(755,root,root) /usr/bin/dialog
-/usr/man/man1/*
+%{_mandir}/man1/*
 
 %files libs
 %defattr(644,root,root,755)
@@ -144,7 +144,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %attr(755,root,root) /usr/lib/lib*.so
 /usr/include/*
-/usr/man/man3/*
+%{_mandir}/man3/*
 
 %files static
 %defattr(644,root,root,755)
