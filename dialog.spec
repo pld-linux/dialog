@@ -5,13 +5,14 @@ Summary(pl):	Dialog tworzy okienkowy interfejs u¿ytkownika na terminalu tekstowy
 Summary(tr):	tty diyalog kutularý oluþturan bir program
 Name:		dialog
 Version:	0.69
-Release:	4
+Release:	5
 Epoch:		1
 License:	GPL
 Group:		Applications/Terminal
 Group(de):	Applikationen/Terminal
 Group(pl):	Aplikacje/Terminal
 Source0:	ftp://AdvancedResearch.org/pub/vstemen/%{name}-%{version}.tar.gz
+Source1:	dialog-non-english-man-pages.tar.bz2
 Patch0:		%{name}-shared.patch
 Patch1:		%{name}-manpath.patch
 Patch2:		%{name}-awk.patch
@@ -118,6 +119,8 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_examplesdir}/%{name}}
 
 cp -a samples/* dialog.pl $RPM_BUILD_ROOT%{_examplesdir}/%{name}
 
+bzip2 -dc %{SOURCE1} | tar -xf - -C $RPM_BUILD_ROOT%{_mandir}
+
 gzip -9nf dialog.lsm README CMDLINE
 
 %clean
@@ -131,6 +134,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/dialog
 %attr(755,root,root) %{_libdir}/lib*.so.*
 %{_mandir}/man1/*
+%lang(hu) %{_mandir}/hu/man1/*
+%lang(pl) %{_mandir}/pl/man1/*
 
 %files devel
 %defattr(644,root,root,755)
