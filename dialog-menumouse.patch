@@ -1,0 +1,12 @@
+diff -Nur dialog-0.69.orig/list.c dialog-0.69/list.c
+--- dialog-0.69.orig/list.c	Tue Jan 16 11:34:36 1996
++++ dialog-0.69/list.c	Wed Oct 31 15:54:25 2001
+@@ -235,7 +235,7 @@
+ 	if (!new) {
+ 	    if ( (key>='1' && key<='9')
+ 		|| (key>=DIALOG_M_EVENT && key-DIALOG_M_EVENT<' ') ) {
+-		key -= (key>DIALOG_M_EVENT ? DIALOG_M_EVENT : '1');
++		key -= (key>=DIALOG_M_EVENT ? DIALOG_M_EVENT : '1');
+ 		key=min(key,max_choice);
+ 		for (new=first; key && new->next; new=new->next)
+ 		  key--;
