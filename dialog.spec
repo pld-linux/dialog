@@ -9,8 +9,6 @@ Release:	6
 Epoch:		1
 License:	GPL
 Group:		Applications/Terminal
-Group(de):	Applikationen/Terminal
-Group(pl):	Aplikacje/Terminal
 Source0:	ftp://iride.unipv.it/pub/linux/dialog/%{name}-%{version}.tar.gz
 # other (more recent but probably worse) dialog source:
 # ftp://AdvancedResearch.org/pub/vstemen/%{name}-0.7.tar.gz
@@ -65,13 +63,6 @@ dialog programЩnЩ bir kabuk programcЩПЩ iГinden ГaПЩrabilirsiniz.
 Summary:	Libraries and headers files for dialog
 Summary(pl):	Biblioteki i pliki nagСЁwkowe dla dialog
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Разработка/Библиотеки
-Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name} = %{version}
 
 %description devel
@@ -84,13 +75,6 @@ Biblioteki i pliki nagЁСwkowe dla dialog.
 Summary:	Static dialog library
 Summary(pl):	Statyczna biblioteka dialog
 Group:		Development/Libraries
-Group(de):	Entwicklung/Libraries
-Group(es):	Desarrollo/Bibliotecas
-Group(fr):	Development/Librairies
-Group(pl):	Programowanie/Biblioteki
-Group(pt_BR):	Desenvolvimento/Bibliotecas
-Group(ru):	Разработка/Библиотеки
-Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name}-devel = %{version}
 
 %description static
