@@ -119,7 +119,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc {dialog.lsm,README,CMDLINE}.gz
-%attr(755,root,root) /usr/bin/dialog
+%attr(755,root,root) %{_bindir}/dialog
 %{_mandir}/man1/*
 
 %files libs
