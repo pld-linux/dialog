@@ -14,7 +14,7 @@ Group(pl):	Aplikacje/Terminal
 Source0:	ftp://iride.unipv.it/pub/linux/dialog/%{name}-%{version}.tar.gz
 # other (more recent but probably worse) dialog source:
 # ftp://AdvancedResearch.org/pub/vstemen/%{name}-0.7.tar.gz
-Source1:	dialog-non-english-man-pages.tar.bz2
+Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/dialog-non-english-man-pages.tar.bz2
 Patch0:		%{name}-shared.patch
 Patch1:		%{name}-manpath.patch
 Patch2:		%{name}-awk.patch
