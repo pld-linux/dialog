@@ -1,0 +1,24 @@
+Date: Fri, 17 May 2002 11:41:47 +0200
+From: Jarek Kulesza <jik@telkab.pl>
+To: feedback@pld.org.pl
+Subject: dialog 
+
+Cze¶æ,
+
+Nie by³em pewien komu podes³aæ, wiêc wysy³am tutaj :)                           
+£atka likwiduj±ca jeden z segfaultów w dialogu                                  
+(ticket id. 202):                                                               
+
+--- dialog-0.69.orig/dialog.c   Tue Jan 16 13:03:40 1996                        
++++ dialog-0.69/dialog.c        Thu May 16 22:19:13 2002                        
+@@ -150,7 +150,7 @@                                                             
+            break; /* not found */
+     }
+-    if (argc<3) {                                                              
++    if (argc<3 || !optPtr) {                                                   
+         Usage (prgname);
+        exit(DIALOG_ERROR);
+     }
+
+pozdrawiam,                                                                     
+jarek                                                                           
