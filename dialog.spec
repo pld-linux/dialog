@@ -96,7 +96,7 @@ Statyczna biblioteka dialog.
 %patch7 -p1
 
 %build
-autoconf
+%{__autoconf}
 %configure
 
 %{__make} depend shared all
