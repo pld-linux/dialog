@@ -88,7 +88,7 @@ Static dialog library.
 Statyczna biblioteka dialog.
 
 %prep
-%setup  -q
+%setup -q
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
@@ -110,9 +110,9 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_examplesdir}/%{name}}
 
 %{__make} install \
-    prefix=$RPM_BUILD_ROOT%{_prefix} \
-    LIBDIR=$RPM_BUILD_ROOT%{_libdir} \
-    mandir=$RPM_BUILD_ROOT%{_mandir}
+	prefix=$RPM_BUILD_ROOT%{_prefix} \
+	LIBDIR=$RPM_BUILD_ROOT%{_libdir} \
+	mandir=$RPM_BUILD_ROOT%{_mandir}
 
 cp -a samples/* dialog.pl $RPM_BUILD_ROOT%{_examplesdir}/%{name}
 
