@@ -1,7 +1,5 @@
-Only in dialog-0.69: Makefile.in.orig
-diff -ur dialog-0.69/dialog.c dialog-0.69-/dialog.c
---- dialog-0.69/dialog.c	Tue Jan 16 13:03:40 1996
-+++ dialog-0.69-/dialog.c	Mon May 20 14:01:39 2002
+--- dialog-0.69.orig/dialog.c	Tue Jan 16 13:03:40 1996
++++ dialog-0.69/dialog.c	Mon May 20 23:02:03 2002
 @@ -150,7 +150,7 @@
  	    break; /* not found */
      }
@@ -11,10 +9,23 @@ diff -ur dialog-0.69/dialog.c dialog-0.69-/dialog.c
          Usage (prgname);
  	exit(DIALOG_ERROR);
      }
-Only in dialog-0.69: gauge.c.orig
-diff -ur dialog-0.69/util.c dialog-0.69-/util.c
---- dialog-0.69/util.c	Tue Jan 16 11:34:35 1996
-+++ dialog-0.69-/util.c	Mon May 20 14:00:53 2002
+--- dialog-0.69.orig/text.c	Tue Jan 16 11:34:35 1996
++++ dialog-0.69/text.c	Mon May 20 23:03:23 2002
+@@ -35,10 +35,10 @@
+ static char *buf, *page;
+ 
+ /* Silly function, to remove duplicates */
+-static int fatal(char *msg, int errno)
++static int fatal(char *msg, int error)
+ {
+   endwin();
+-  fprintf(stderr,"dialog_textbox(): %s: %s\n",msg,strerror(errno));
++  fprintf(stderr,"dialog_textbox(): %s: %s\n",msg,strerror(error));
+   exit(DIALOG_ERROR);
+ }
+ 
+--- dialog-0.69.orig/util.c	Tue Jan 16 11:34:35 1996
++++ dialog-0.69/util.c	Mon May 20 23:02:03 2002
 @@ -239,8 +239,8 @@
  	/*
  	 * Ok, now fix width and height. Default to a margin of 3 on each side.
