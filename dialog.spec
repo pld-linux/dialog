@@ -23,6 +23,7 @@ Patch4:		%{name}-opt.patch
 Patch5:		%{name}-menumouse.patch
 Patch6:		%{name}-menuborder.patch
 Patch7:		%{name}-segv.patch
+Patch8:		%{name}-gcc34.patch
 URL:		http://www.AdvancedResearch.org/dialog/
 BuildRequires:	autoconf
 BuildRequires:	gpm-devel
@@ -96,6 +97,7 @@ Statyczna biblioteka dialog.
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
+%patch8 -p1
 
 %build
 %{__autoconf}

@@ -1,0 +1,18 @@
+--- dialog-0.69/dialog.c.orig	2004-03-01 12:31:55.000000000 +0100
++++ dialog-0.69/dialog.c	2004-03-01 12:57:10.716175104 +0100
+@@ -234,6 +234,7 @@
+       case DIALOG_YESNO:
+       case DIALOG_MSG:
+       case DIALOG_INFO:
++      case DIALOG_TEXT: /* nothing to do */
+ 
+ 	/* nothing special to do */
+ 	break; 
+@@ -288,7 +289,6 @@
+ 	}
+ 	break;
+ 
+-      case DIALOG_TEXT: /* nothing to do */
+     }
+ 
+     /*
