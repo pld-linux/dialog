@@ -5,7 +5,7 @@ Summary(pl):	Dialog tworzy okienkowy interfejs u¿ytkownika na terminalu tekstowy
 Summary(tr):	tty diyalog kutularý oluþturan bir program
 Name:		dialog
 Version:	0.69
-Release:	9
+Release:	10
 Epoch:		1
 License:	GPL
 Group:		Applications/Terminal
