@@ -12,14 +12,17 @@ Group(pl):	Narzêdzia/Terminal
 Source0:	ftp://iride.unipv.it/pub/linux/dialog/%{name}-%{version}.tar.gz
 Patch0:		dialog-shared.patch
 Patch1:		dialog-manpath.patch
+Patch2:		dialog-awk.patch
+Patch3:		dialog-examples.patch
 BuildRequires:	gpm-devel
+BuildRequires:	ncurses-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Dialog is a utility that allows you to build user interfaces in a TTY
 (text mode only). You can call dialog from within a shell script to
 ask the user questions or present with choices in a more user friendly
-manner. See /usr/doc/dialog-*/samples for some examples.
+manner. 
 
 %description -l de
 Dialog ist ein Dienstprogramm, das das Erstellen einer
@@ -80,6 +83,8 @@ Statyczna biblioteka dialog.
 %setup  -q
 %patch0 -p1 
 %patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 %build
 autoconf && %configure
@@ -88,25 +93,23 @@ autoconf && %configure
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_prefix}/{bin,share/man/man1,src/dialog}
+install -d $RPM_BUILD_ROOT%{_prefix}/{bin,share/man/man1,src/examples/dialog}
 
 %{__make} \
     prefix=$RPM_BUILD_ROOT%{_prefix} \
     mandir=$RPM_BUILD_ROOT%{_mandir} \
     install
 
-cp -a samples/* dialog.pl $RPM_BUILD_ROOT%{_prefix}/src/dialog
+cp -a samples/* dialog.pl $RPM_BUILD_ROOT%{_prefix}/src/examples/dialog
 
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
-
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* dialog.lsm README CMDLINE
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc {dialog.lsm,README,CMDLINE}.gz
+%doc dialog.lsm README CMDLINE
 
 %attr(755,root,root) %{_bindir}/dialog
 %attr(755,root,root) %{_libdir}/lib*.so.*
@@ -115,7 +118,7 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 
-%attr(- ,root,root) %{_prefix}/src/dialog
+%attr(- ,root,root) %{_prefix}/src/examples/dialog
 %attr(755,root,root) %{_libdir}/lib*.so
 
 %{_includedir}/*
