@@ -122,25 +122,3 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 
 %{_libdir}/lib*.a
-
-%changelog
-* Wed Apr 28 1999 Artur Frysiak <wiget@pld.org.pl>
-  [0.69-1]
-- upgrade to 0.69
-- changed source URL
-- added libs, devel and static subpackage
-- fixed coping samples
-
-* Thu Apr 22 1999 Artur Frysiak <wiget@pld.org.pl>
-  [0.6-15]
-- compiled on rpm 3
-- gzipped docs
-- samples moved to /usr/src/examples
-
-* Sun Oct 18 1998 Marcin Korzonek <mkorz@shadow.eu.org>
-  [0.6-13]
-- added pl translation,
-- allow building from non root account,
-- defined files permission,
-- removed INSTALL and COPYING from docs,
-- rewritten %install section.
