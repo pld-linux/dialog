@@ -108,7 +108,7 @@ make prefix=$RPM_BUILD_ROOT/usr install
 
 cp -a samples/* dialog.pl $RPM_BUILD_ROOT/usr/src/examples/%{name}-%{version}
 
-strip --strip-unneeded $RPM_BUILD_ROOT/usr/lib/lib*.so.*.*
+strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 
 gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* \
 	dialog.lsm README CMDLINE
@@ -124,7 +124,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files libs
 %defattr(644,root,root,755)
-%attr(755,root,root) /usr/lib/lib*.so.*.*
+%attr(755,root,root) %{_libdir}/lib*.so.*.*
 
 %files devel
 %defattr(644,root,root,755)
@@ -142,13 +142,13 @@ rm -rf $RPM_BUILD_ROOT
 %doc /usr/src/examples/%{name}-%{version}/Makefile
 %doc %attr(755,root,root) /usr/src/examples/%{name}-%{version}/gauge
 
-%attr(755,root,root) /usr/lib/lib*.so
+%attr(755,root,root) %{_libdir}/lib*.so
 /usr/include/*
 %{_mandir}/man3/*
 
 %files static
 %defattr(644,root,root,755)
-/usr/lib/lib*.a
+%{_libdir}/lib*.a
 
 %changelog
 * Wed Apr 28 1999 Artur Frysiak <wiget@pld.org.pl>
