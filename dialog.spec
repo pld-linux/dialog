@@ -5,18 +5,19 @@ Summary(pl):	Dialog tworzy okienkowy interfejs u¿ytkownika na terminalu tekstowy
 Summary(tr):	tty diyalog kutularý oluþturan bir program
 Name:		dialog
 Version:	0.69
-Release:	2
+Release:	3
 Epoch:		1
 License:	GPL
 Group:		Applications/Terminal
 Group(de):	Applikationen/Terminal
 Group(pl):	Aplikacje/Terminal
-Source0:	ftp://iride.unipv.it/pub/linux/dialog/%{name}-%{version}.tar.gz
+Source0:	ftp://AdvancedResearch.org/pub/vstemen/%{name}-%{version}.tar.gz
 Patch0:		%{name}-shared.patch
 Patch1:		%{name}-manpath.patch
 Patch2:		%{name}-awk.patch
 Patch3:		%{name}-examples.patch
 Patch4:		%{name}-opt.patch
+URL:		http://www.AdvancedResearch.org/dialog
 BuildRequires:	gpm-devel
 BuildRequires:	ncurses-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
