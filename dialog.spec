@@ -113,8 +113,6 @@ cp -a samples/* dialog.pl $RPM_BUILD_ROOT%{_examplesdir}/%{name}
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 
-gzip -9nf dialog.lsm README CMDLINE
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -131,7 +129,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc *.gz
+%doc dialog.lsm README CMDLINE
 %attr(755,root,root) %{_libdir}/lib*.so
 %{_includedir}/*
 %{_mandir}/man3/*
