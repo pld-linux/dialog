@@ -143,7 +143,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc %attr(755,root,root) /usr/src/examples/%{name}-%{version}/gauge
 
 %attr(755,root,root) %{_libdir}/lib*.so
-/usr/include/*
+%{_includedir}/*
 %{_mandir}/man3/*
 
 %files static
