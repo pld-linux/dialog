@@ -10,7 +10,6 @@ Copyright: 	GPL
 Group: 		Utilities/Terminal
 Group(pl):	Narzêdzia/Terminal
 Source: 	ftp://iride.unipv.it/pub/linux/dialog/%{name}-%{version}.tar.gz
-#Patch2: 	dialog-loop.patch
 Patch0:		dialog-shared.patch
 BuildPrereq:	ncurses-devel
 BuildPrereq:	gpm-devel
@@ -56,7 +55,7 @@ Group:		Libraries
 Group(pl):	Biblioteki
 
 %description libs
-Dialog library
+Dialog library.
 
 %description libs -l pl
 Biblioteka dialog pozwala na stworzenie przyjaznego interfejsu
@@ -83,17 +82,14 @@ Group(pl):      Programowanie/Biblioteki
 Requires:	%{name}-devel = %{version}
 
 %description static
-Static dialog library
+Static dialog library.
 
 %description static -l pl
-Statyczna biblioteka dialog
-
+Statyczna biblioteka dialog.
 
 %prep
 %setup  -q
 %patch0 -p1 
-#%patch1 -p1 
-#%patch2 -p1 
 
 %build
 autoconf
@@ -111,6 +107,8 @@ install -d $RPM_BUILD_ROOT/usr/{bin,man/man1,src/examples/%{name}-%{version}}
 make prefix=$RPM_BUILD_ROOT/usr install
 
 cp -a samples/* dialog.pl $RPM_BUILD_ROOT/usr/src/examples/%{name}-%{version}
+
+strip --strip-unneeded $RPM_BUILD_ROOT/usr/lib/lib*.so.*.*
 
 gzip -9nf $RPM_BUILD_ROOT/usr/man/man*/* \
 	dialog.lsm README CMDLINE
@@ -149,6 +147,7 @@ rm -rf $RPM_BUILD_ROOT
 /usr/man/man3/*
 
 %files static
+%defattr(644,root,root,755)
 /usr/lib/lib*.a
 
 %changelog
