@@ -1,0 +1,84 @@
+diff -ur dialog-0.69.old/Makefile.in dialog-0.69/Makefile.in
+--- dialog-0.69.old/Makefile.in	Tue Jan 16 13:32:48 1996
++++ dialog-0.69/Makefile.in	Wed Apr 28 03:02:38 1999
+@@ -38,6 +38,7 @@
+ INSTINC = $(INSTALL) -m 644
+ INSTMAN = $(INSTALL) -m 644
+ 
++LN_S = @LN_S@
+ 
+ HDRS = $(TARGET).h colors.h
+ 
+@@ -46,14 +47,14 @@
+ 
+ SRCS = $(OBJS:.o=.c)
+ 
+-all: configure Makefile $(LIBRARY) $(TARGET) $(TARGET).1 demo
++all: configure Makefile depend $(SHLIB) $(TARGET) $(LIBRARY) $(TARGET).1 demo
+ 
+ # Use ranlib instead of "ar rcs" for portability
+ $(LIBRARY): $(OBJS)
+ 	ar rc $@ $(OBJS)
+ 	ranlib $@
+ 
+-$(TARGET): $(TARGET).o $(LIBRARY)
++$(TARGET): $(TARGET).o $(SHLIB)
+ 	$(CC) $(CFLAGS) $(TARGET).o $(LDFLAGS) $(LIBS) -o $@ 
+ 
+ $(TARGET).1: doc/doc.$(TARGET)
+@@ -69,7 +70,7 @@
+ distclean: clean
+ 	rm config.* Makefile
+ 
+-install: $(LIBRARY) $(TARGET)
++install: $(SHLIB) $(TARGET) $(LIBRARY) 
+ 	-for n in $(BINDIR) $(LIBDIR) $(INCDIR) $(MAN1DIR) \
+ 			$(MAN3DIR) $(INFDIR); do\
+ 		if [ -d $$n ]; then true; else \
+@@ -89,12 +90,9 @@
+ 	#install the shlib too, if any
+ 	if [ -f "$(SHLIB)" ]; then \
+ 		$(INSTALL) $(INSTBINFLAGS) $(SHLIB) $(LIBDIR); \
++		$(LN_S) $(SHLIB_SO) $(LIBDIR)/lib$(TARGET).so; \
+ 		sync;\
+ 	fi
+-	@-if [ -f "$(SHLIB)" ]; then \
+-		echo "Running ldconfig"; \
+-		ldconfig; \
+-	fi
+ 
+ 
+ #########################
+@@ -122,6 +120,7 @@
+ 
+ $(SHLIB): $(SHLOBJS)
+ 	$(LDSHARED) -o $@ $(SHLOBJS)
++	$(LN_S) -f $(SHLIB_SO) lib$(TARGET).so 
+ 
+ ######################### Generic targets and tasks
+ 
+@@ -171,3 +170,5 @@
+ 
+ test:
+ 	$(MAKE) -C samples test DIALOG=`pwd`/dialog
++
++.PHONY:	configure Makefile depend $(SHLIB) $(TARGET) $(LIBRARY) mpage info $(TARGET).1 demo install clean distclean
+diff -ur dialog-0.69.old/configure.in dialog-0.69/configure.in
+--- dialog-0.69.old/configure.in	Tue Jan 16 11:51:35 1996
++++ dialog-0.69/configure.in	Wed Apr 28 03:02:24 1999
+@@ -4,6 +4,7 @@
+ dnl      (1.x will complain)
+ 
+ AC_INIT(dialog.c)
++AC_PROG_LN_S
+ AC_PROG_CC
+ AC_PROG_CPP
+ AC_PROG_INSTALL
+@@ -117,6 +118,7 @@
+ AC_SUBST(CCSHARED)
+ AC_SUBST(LDSHARED)
+ AC_SUBST(SHLIB)
++AC_SUBST(LN_S)
+ 
+ if test "$SHLIB" = ""
+   then
