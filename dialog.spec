@@ -13,7 +13,7 @@ Source: 	ftp://iride.unipv.it/pub/linux/dialog/%{name}-%{version}.tar.gz
 Patch0:		dialog-shared.patch
 Patch1:		dialog-manpath.patch
 BuildRequires:	gpm-devel
-Buildroot:	/tmp/%{name}-%{version}-root
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
 Dialog is a utility that allows you to build user interfaces in
