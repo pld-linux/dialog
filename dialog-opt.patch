@@ -1,0 +1,18 @@
+--- dialog-0.69/configure.in~	Wed Dec 20 20:47:11 2000
++++ dialog-0.69/configure.in	Wed Dec 20 20:47:35 2000
+@@ -12,15 +12,6 @@
+ LDFLAGS="-s"
+ LIBS=""
+ 
+-if test x$GCC = xyes
+-  then
+-   CFLAGS="-Wall -Wstrict-prototypes -fomit-frame-pointer -fno-strength-reduce"
+-   OPTFLAGS="-O2"
+-  else
+-   CFLAGS=""
+-   OPTFLAGS="-O" 
+-fi
+-
+ DEBFLAGS="-g -DDEBUG_DIALOG"
+ 
+ dnl ################################################################ GPM
