@@ -84,13 +84,13 @@ Statyczna biblioteka dialog.
 %build
 autoconf && %configure
 
-make depend shared all
+%{__make} depend shared all
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_prefix}/{bin,share/man/man1,src/dialog}
 
-make \
+%{__make} \
     prefix=$RPM_BUILD_ROOT%{_prefix} \
     mandir=$RPM_BUILD_ROOT%{_mandir} \
     install
