@@ -12,7 +12,7 @@ Group(pl):	Narzêdzia/Terminal
 Source: 	ftp://iride.unipv.it/pub/linux/dialog/%{name}-%{version}.tar.gz
 Patch0:		dialog-shared.patch
 Patch1:		dialog-manpath.patch
-BuildPrereq:	gpm-devel
+BuildRequires:	gpm-devel
 Buildroot:	/tmp/%{name}-%{version}-root
 
 %description
