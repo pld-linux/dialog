@@ -11,9 +11,8 @@ Group: 		Utilities/Terminal
 Group(pl):	Narzêdzia/Terminal
 Source: 	ftp://iride.unipv.it/pub/linux/dialog/%{name}-%{version}.tar.gz
 Patch0:		dialog-shared.patch
-BuildPrereq:	ncurses-devel
+Patch1:		dialog-manpath.patch
 BuildPrereq:	gpm-devel
-Requires:	%{name}-libs = %{version}
 Buildroot:	/tmp/%{name}-%{version}-root
 
 %description
@@ -48,25 +47,12 @@ araçtýr. Kullanýcýya seçenekleri göstermek veya sorular sormak için, dialog
 programýný bir kabuk programcýðý içinden çaðýrabilirsiniz. Örnekler için
 /usr/src/examples/dialog-%{version} dizinine bakýnýz.
 
-%package libs
-Summary:	Dialog library
-Summary(pl):	Biblioteka dialog
-Group:		Libraries
-Group(pl):	Biblioteki
-
-%description libs
-Dialog library.
-
-%description libs -l pl
-Biblioteka dialog pozwala na stworzenie przyjaznego interfejsu
-u¿ytkownika na terminalu pracuj±cym w trybie tekstowym.
-
-%package devel
+%package	devel
 Summary:	Libraries and headers files for dialog
 Summary(pl):	Biblioteki i pliki nagó³wkowe dla dialog
 Group:		Development/Libraries
 Group(pl):	Programowanie/Biblioteki
-Requires:	%{name}-libs = %{version}
+Requires:	%{name} = %{version}
 
 %description devel
 Libraries and headers files for dialog.
@@ -74,7 +60,7 @@ Libraries and headers files for dialog.
 %description devel -l pl
 Biblioteki i pliki nagó³wkowe dla dialog.
 
-%package static
+%package	static
 Summary:	Static dialog library
 Summary(pl):	Statyczna biblioteka dialog
 Group:		Development/Libraries
@@ -90,28 +76,27 @@ Statyczna biblioteka dialog.
 %prep
 %setup  -q
 %patch0 -p1 
+%patch1 -p1
 
 %build
-autoconf
-
-CFLAGS="$RPM_OPT_FLAGS" LDFLAGS="-s" \
-./configure %{_target_platform} \
-	--prefix=/usr
+autoconf && %configure
 
 make depend shared all
 
 %install
 rm -rf $RPM_BUILD_ROOT 
-install -d $RPM_BUILD_ROOT/usr/{bin,man/man1,src/examples/%{name}-%{version}}
+install -d $RPM_BUILD_ROOT%{_prefix}/{bin,share/man/man1,src/dialog}
 
-make prefix=$RPM_BUILD_ROOT/usr install
+make \
+    prefix=$RPM_BUILD_ROOT%{_prefix} \
+    mandir=$RPM_BUILD_ROOT%{_mandir} \
+    install
 
-cp -a samples/* dialog.pl $RPM_BUILD_ROOT/usr/src/examples/%{name}-%{version}
+cp -a samples/* dialog.pl $RPM_BUILD_ROOT%{_prefix}/src/dialog
 
 strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
 
-gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* \
-	dialog.lsm README CMDLINE
+gzip -9nf $RPM_BUILD_ROOT%{_mandir}/man*/* dialog.lsm README CMDLINE
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -119,35 +104,23 @@ rm -rf $RPM_BUILD_ROOT
 %files
 %defattr(644,root,root,755)
 %doc {dialog.lsm,README,CMDLINE}.gz
-%attr(755,root,root) %{_bindir}/dialog
-%{_mandir}/man1/*
 
-%files libs
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.so.*.*
+%attr(755,root,root) %{_bindir}/dialog
+%attr(755,root,root) %{_libdir}/lib*.so.*
+%{_mandir}/man1/*
 
 %files devel
 %defattr(644,root,root,755)
-%doc /usr/src/examples/%{name}-%{version}/checklist
-%doc /usr/src/examples/%{name}-%{version}/gauge-sh
-%doc /usr/src/examples/%{name}-%{version}/gauge.c
-%doc /usr/src/examples/%{name}-%{version}/infobox
-%doc /usr/src/examples/%{name}-%{version}/inputbox
-%doc /usr/src/examples/%{name}-%{version}/menubox
-%doc /usr/src/examples/%{name}-%{version}/msgbox
-%doc /usr/src/examples/%{name}-%{version}/radiolist
-%doc /usr/src/examples/%{name}-%{version}/textbox
-%doc /usr/src/examples/%{name}-%{version}/yesno
-%doc /usr/src/examples/%{name}-%{version}/README
-%doc /usr/src/examples/%{name}-%{version}/Makefile
-%doc %attr(755,root,root) /usr/src/examples/%{name}-%{version}/gauge
 
+%attr(-  ,root,root) /usr/src/dialog
 %attr(755,root,root) %{_libdir}/lib*.so
+
 %{_includedir}/*
 %{_mandir}/man3/*
 
 %files static
 %defattr(644,root,root,755)
+
 %{_libdir}/lib*.a
 
 %changelog
@@ -171,16 +144,3 @@ rm -rf $RPM_BUILD_ROOT
 - defined files permission,
 - removed INSTALL and COPYING from docs,
 - rewritten %install section.
-
-* Thu May 7 1998 Michael Maher <mike@redhat.com> 
-- Added Sean Reifschneider <jafo@tummy.com> patches for 
-  infinite loop problems.
-
-* Fri Apr 24 1998 Prospector System <bugs@redhat.com>
-- translations modified for de, fr, tr
-
-* Wed Apr 15 1998 Erik Troan <ewt@redhat.com>
-- built against new ncurses
-
-* Thu Jul 10 1997 Erik Troan <ewt@redhat.com>
-- built against glibc
