@@ -6,15 +6,17 @@ Summary(tr):	tty diyalog kutularý oluþturan bir program
 Name:		dialog
 Version:	0.69
 Release:	2
+Epoch:		1
 License:	GPL
-Group:		Utilities/Terminal
-Group(pl):	Narzêdzia/Terminal
+Group:		Applications/Terminal
+Group(de):	Applikationen/Terminal
+Group(pl):	Aplikacje/Terminal
 Source0:	ftp://iride.unipv.it/pub/linux/dialog/%{name}-%{version}.tar.gz
-Patch0:		dialog-shared.patch
-Patch1:		dialog-manpath.patch
-Patch2:		dialog-awk.patch
-Patch3:		dialog-examples.patch
-Patch4:		dialog-opt.patch
+Patch0:		%{name}-shared.patch
+Patch1:		%{name}-manpath.patch
+Patch2:		%{name}-awk.patch
+Patch3:		%{name}-examples.patch
+Patch4:		%{name}-opt.patch
 BuildRequires:	gpm-devel
 BuildRequires:	ncurses-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -23,7 +25,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Dialog is a utility that allows you to build user interfaces in a TTY
 (text mode only). You can call dialog from within a shell script to
 ask the user questions or present with choices in a more user friendly
-manner. 
+manner.
 
 %description -l de
 Dialog ist ein Dienstprogramm, das das Erstellen einer
@@ -56,6 +58,7 @@ dialog programýný bir kabuk programcýðý içinden çaðýrabilirsiniz.
 Summary:	Libraries and headers files for dialog
 Summary(pl):	Biblioteki i pliki nagó³wkowe dla dialog
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name} = %{version}
@@ -70,6 +73,7 @@ Biblioteki i pliki nagó³wkowe dla dialog.
 Summary:	Static dialog library
 Summary(pl):	Statyczna biblioteka dialog
 Group:		Development/Libraries
+Group(de):	Entwicklung/Libraries
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
 Requires:	%{name}-devel = %{version}
@@ -96,38 +100,33 @@ autoconf
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_prefix}/{bin,share/man/man1,src/examples/dialog}
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_examplesdir}/%{name}}
 
-%{__make} \
+%{__make} install \
     prefix=$RPM_BUILD_ROOT%{_prefix} \
-    mandir=$RPM_BUILD_ROOT%{_mandir} \
-    install
+    mandir=$RPM_BUILD_ROOT%{_mandir}
 
-cp -a samples/* dialog.pl $RPM_BUILD_ROOT%{_prefix}/src/examples/dialog
+cp -a samples/* dialog.pl $RPM_BUILD_ROOT%{_examplesdir}/%{name}
 
-strip --strip-unneeded $RPM_BUILD_ROOT%{_libdir}/lib*.so.*.*
+gzip -9nf dialog.lsm README CMDLINE
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc dialog.lsm README CMDLINE
-
 %attr(755,root,root) %{_bindir}/dialog
 %attr(755,root,root) %{_libdir}/lib*.so.*
 %{_mandir}/man1/*
 
 %files devel
 %defattr(644,root,root,755)
-
-%attr(- ,root,root) %{_prefix}/src/examples/dialog
+%doc *.gz
 %attr(755,root,root) %{_libdir}/lib*.so
-
 %{_includedir}/*
 %{_mandir}/man3/*
+%attr(- ,root,root) %{_examplesdir}/dialog
 
 %files static
 %defattr(644,root,root,755)
-
 %{_libdir}/lib*.a
