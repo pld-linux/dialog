@@ -119,7 +119,7 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_examplesdir}/%{name}}
 
 cp -a samples/* dialog.pl $RPM_BUILD_ROOT%{_examplesdir}/%{name}
 
-bzip2 -dc %{SOURCE1} | tar -xf - -C $RPM_BUILD_ROOT%{_mandir}
+bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 
 gzip -9nf dialog.lsm README CMDLINE
 
