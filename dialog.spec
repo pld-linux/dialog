@@ -20,7 +20,7 @@ Patch3:		%{name}-examples.patch
 Patch4:		%{name}-opt.patch
 Patch5:		%{name}-menumouse.patch
 Patch6:		%{name}-menuborder.patch
-URL:		http://www.AdvancedResearch.org/dialog
+URL:		http://www.AdvancedResearch.org/dialog/
 BuildRequires:	autoconf
 BuildRequires:	gpm-devel
 BuildRequires:	ncurses-devel
