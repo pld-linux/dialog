@@ -18,6 +18,7 @@ Patch2:		%{name}-awk.patch
 Patch3:		%{name}-examples.patch
 Patch4:		%{name}-opt.patch
 URL:		http://www.AdvancedResearch.org/dialog
+BuildRequires:	autoconf
 BuildRequires:	gpm-devel
 BuildRequires:	ncurses-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
