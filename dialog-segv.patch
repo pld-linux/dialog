@@ -1,24 +1,28 @@
-Date: Fri, 17 May 2002 11:41:47 +0200
-From: Jarek Kulesza <jik@telkab.pl>
-To: feedback@pld.org.pl
-Subject: dialog 
-
-Cze¶æ,
-
-Nie by³em pewien komu podes³aæ, wiêc wysy³am tutaj :)                           
-£atka likwiduj±ca jeden z segfaultów w dialogu                                  
-(ticket id. 202):                                                               
-
---- dialog-0.69.orig/dialog.c   Tue Jan 16 13:03:40 1996                        
-+++ dialog-0.69/dialog.c        Thu May 16 22:19:13 2002                        
-@@ -150,7 +150,7 @@                                                             
-            break; /* not found */
+Only in dialog-0.69: Makefile.in.orig
+diff -ur dialog-0.69/dialog.c dialog-0.69-/dialog.c
+--- dialog-0.69/dialog.c	Tue Jan 16 13:03:40 1996
++++ dialog-0.69-/dialog.c	Mon May 20 14:01:39 2002
+@@ -150,7 +150,7 @@
+ 	    break; /* not found */
      }
--    if (argc<3) {                                                              
-+    if (argc<3 || !optPtr) {                                                   
+ 
+-    if (argc<3) {
++    if (argc<3 || !optPtr) {
          Usage (prgname);
-        exit(DIALOG_ERROR);
+ 	exit(DIALOG_ERROR);
      }
-
-pozdrawiam,                                                                     
-jarek                                                                           
+Only in dialog-0.69: gauge.c.orig
+diff -ur dialog-0.69/util.c dialog-0.69-/util.c
+--- dialog-0.69/util.c	Tue Jan 16 11:34:35 1996
++++ dialog-0.69-/util.c	Mon May 20 14:00:53 2002
+@@ -239,8 +239,8 @@
+ 	/*
+ 	 * Ok, now fix width and height. Default to a margin of 3 on each side.
+ 	 */
+-	if (desc->c_wid==0) desc->c_wid=-3;
+-	if (desc->c_hei==0) desc->c_hei=-3;
++	if (desc->c_wid <= 0 || desc->c_wid > ws.ws_col) desc->c_wid=-3;
++	if (desc->c_hei <= 0 || desc->c_hei > ws.ws_row) desc->c_hei=-3;
+ 	
+ 	desc->wid=desc->c_wid; desc->hei=desc->c_hei;
+ 	
