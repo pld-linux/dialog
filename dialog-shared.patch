@@ -52,7 +52,8 @@ diff -ur dialog-0.69.old/Makefile.in dialog-0.69/Makefile.in
 @@ -122,6 +120,7 @@
  
  $(SHLIB): $(SHLOBJS)
- 	$(LDSHARED) -o $@ $(SHLOBJS)
+-	$(LDSHARED) -o $@ $(SHLOBJS)
++	$(LDSHARED) -o $@ $(SHLOBJS) $(LIBS)
 +	$(LN_S) -f $(SHLIB_SO) lib$(TARGET).so 
  
  ######################### Generic targets and tasks

@@ -5,7 +5,7 @@ Summary(pl):	Dialog tworzy okienkowy interfejs u©ytkownika na terminalu tekstowy
 Summary(tr):	tty diyalog kutularЩ oluЧturan bir program
 Name:		dialog
 Version:	0.69
-Release:	3
+Release:	4
 Epoch:		1
 License:	GPL
 Group:		Applications/Terminal
@@ -60,23 +60,31 @@ Summary:	Libraries and headers files for dialog
 Summary(pl):	Biblioteki i pliki nagСЁwkowe dla dialog
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(ru):	Разработка/Библиотеки
+Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name} = %{version}
 
 %description devel
-Libraries and headers files for dialog.
+Libraries and header files for dialog.
 
 %description devel -l pl
-Biblioteki i pliki nagСЁwkowe dla dialog.
+Biblioteki i pliki nagЁСwkowe dla dialog.
 
-%package	static
+%package static
 Summary:	Static dialog library
 Summary(pl):	Statyczna biblioteka dialog
 Group:		Development/Libraries
 Group(de):	Entwicklung/Libraries
+Group(es):	Desarrollo/Bibliotecas
 Group(fr):	Development/Librairies
 Group(pl):	Programowanie/Biblioteki
+Group(pt_BR):	Desenvolvimento/Bibliotecas
+Group(ru):	Разработка/Библиотеки
+Group(uk):	Розробка/Б╕бл╕отеки
 Requires:	%{name}-devel = %{version}
 
 %description static
@@ -113,6 +121,9 @@ gzip -9nf dialog.lsm README CMDLINE
 
 %clean
 rm -rf $RPM_BUILD_ROOT
+
+%post	-p /sbin/ldconfig
+%postun	-p /sbin/ldconfig
 
 %files
 %defattr(644,root,root,755)
