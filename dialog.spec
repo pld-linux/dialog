@@ -1,18 +1,19 @@
 Summary: 	A program to build tty dialog boxes
-Summary(de): 	Ein Programm zum Erstellen von tty-Dialogfeldern  
-Summary(fr): 	Programme pour construire des boîtes de dialogue en mode texte
-Summary(pl):	Dialog tworzy okienkowy interfejs u¿ytkownika na terminalu tekstowym.
-Summary(tr): 	tty diyalog kutularý oluþturan bir program
 Name: 		dialog
 Version: 	0.6
 Release: 	13
 Copyright: 	GPL
 Group: 		Utilities/Terminal
+Group(pl):	Narzêdzia/Terminal
 Source: 	ftp://ftp.redhat.com/pub/misc/%{name}-%{version}.tar.gz
 Patch: 	        %{name}-%{version}-ncurses.patch
 Patch1: 	%{name}-%{version}-opt.patch
 Patch2: 	%{name}-%{version}-loop.patch
-Buildroot:	/tmp/%{name}-%{version}-root
+Buildroot:	/tmp/buildroot-%{name}-%{version}
+Summary(de): 	Ein Programm zum Erstellen von tty-Dialogfeldern  
+Summary(fr): 	Programme pour construire des boîtes de dialogue en mode texte
+Summary(pl):	Dialog tworzy okienkowy interfejs u¿ytkownika na terminalu tekstowym.
+Summary(tr): 	tty diyalog kutularý oluþturan bir program
 
 %description
 Dialog is a utility that allows you to build user interfaces in
@@ -63,6 +64,8 @@ install -d $RPM_BUILD_ROOT/usr/{bin,man/man1}
 
 install -s src/dialog $RPM_BUILD_ROOT/usr/bin
 install man/dialog.man $RPM_BUILD_ROOT/usr/man/man1/dialog.1
+
+gzip -9nf $RPM_BUILD_ROOT/usr/man/man*/*
 
 %clean
 rm -rf $RPM_BUILD_ROOT
