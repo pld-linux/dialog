@@ -1,30 +1,22 @@
+%define		ver   1.0
+%define		sdate 20060126
 Summary:	A program to build tty dialog boxes
 Summary(de):	Ein Programm zum Erstellen von tty-Dialogfeldern
 Summary(fr):	Programme pour construire des boîtes de dialogue en mode texte
 Summary(pl):	Dialog tworzy okienkowy interfejs u¿ytkownika na terminalu tekstowym
 Summary(tr):	tty diyalog kutularý oluþturan bir program
 Name:		dialog
-Version:	0.69
-Release:	12
+Version:	%{ver}.%{sdate}
+Release:	0.9
 Epoch:		1
-License:	GPL
+License:	LGPL v2.1
 Group:		Applications/Terminal
-Source0:	ftp://iride.unipv.it/pub/linux/dialog/%{name}-%{version}.tar.gz
-# Source0-md5:	479652df0812eaa92fa9fbec98dd72cd
-# other (more recent but probably worse) dialog source:
-# ftp://AdvancedResearch.org/pub/vstemen/%{name}-0.7.tar.gz
+Source0:	ftp://invisible-island.net/dialog/%{name}-%{ver}-%{sdate}.tgz
+# Source0-md5:	48dc347ac316fb40bf2ab36d955d0cc7
 Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	932081790cd8aa857822bd2b0eafa5bb
-Patch0:		%{name}-shared.patch
-Patch1:		%{name}-manpath.patch
-Patch2:		%{name}-awk.patch
-Patch3:		%{name}-examples.patch
-Patch4:		%{name}-opt.patch
-Patch5:		%{name}-menumouse.patch
-Patch6:		%{name}-menuborder.patch
-Patch7:		%{name}-segv.patch
-Patch8:		%{name}-gcc34.patch
-URL:		http://www.AdvancedResearch.org/dialog/
+Patch0:		%{name}-examples.patch
+URL:		http://invisible-island.net/dialog/dialog.html
 BuildRequires:	autoconf
 BuildRequires:	gpm-devel
 BuildRequires:	ncurses-devel
@@ -88,35 +80,30 @@ Static dialog library.
 Statyczna biblioteka dialog.
 
 %prep
-%setup -q
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
-%patch6 -p1
-%patch7 -p1
-%patch8 -p1
+%setup -q -n %{name}-%{ver}-%{sdate}
+#patch0 -p1 - example scripts need similar fixes 
 
 %build
-%{__autoconf}
-%configure
+%configure \
+	--with-libtool \
+	--with-ncursesw \
+	--enable-widec \
+	--enable-nls
 
-%{__make} depend shared all
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_examplesdir}/%{name}}
 
 %{__make} install \
-	prefix=$RPM_BUILD_ROOT%{_prefix} \
-	LIBDIR=$RPM_BUILD_ROOT%{_libdir} \
-	mandir=$RPM_BUILD_ROOT%{_mandir}
+	DESTDIR=$RPM_BUILD_ROOT
 
 cp -a samples/* dialog.pl $RPM_BUILD_ROOT%{_examplesdir}/%{name}
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
+
+%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -124,7 +111,7 @@ rm -rf $RPM_BUILD_ROOT
 %post	-p /sbin/ldconfig
 %postun	-p /sbin/ldconfig
 
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/dialog
 %attr(755,root,root) %{_libdir}/lib*.so.*
@@ -134,8 +121,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%doc README CMDLINE
+%doc README CHANGES
 %attr(755,root,root) %{_libdir}/lib*.so
+%{_libdir}/lib*.la
 %{_includedir}/*
 %{_mandir}/man3/*
 %attr(- ,root,root) %{_examplesdir}/dialog
