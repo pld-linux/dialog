@@ -1,9 +1,0 @@
-diff -durN dialog-0.69.orig/doc/manpager dialog-0.69/doc/manpager
---- dialog-0.69.orig/doc/manpager	Tue Jan 16 13:45:33 1996
-+++ dialog-0.69/doc/manpager	Mon Oct 30 10:37:25 2000
-@@ -1,4 +1,4 @@
--#! /usr/bin/awk -f
-+#!/bin/awk -f
- 
- # Warning: this uses gnu-awk features
- 
