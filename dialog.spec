@@ -15,11 +15,12 @@ Source0:	ftp://invisible-island.net/dialog/%{name}-%{ver}-%{sdate}.tgz
 # Source0-md5:	48dc347ac316fb40bf2ab36d955d0cc7
 Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	932081790cd8aa857822bd2b0eafa5bb
-Patch0:		%{name}-examples.patch
+Patch0:		%{name}-link.patch
+Patch1:		%{name}-pl.po-update.patch
 URL:		http://invisible-island.net/dialog/dialog.html
-BuildRequires:	autoconf
-BuildRequires:	gpm-devel
-BuildRequires:	ncurses-devel
+BuildRequires:	gettext-devel
+BuildRequires:	ncurses-devel >= 5.4
+BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -33,14 +34,14 @@ Dialog ist ein Dienstprogramm, das das Erstellen einer
 Benutzeroberfläche in einem TTY ermöglicht (nur Textmodus). Sie können
 dialog mit einem Shell-Script aufrufen, um dem Benutzer auf
 benutzerfreundliche Weise Fragen zu stellen oder eine Auswahl
-anzubieten. Unter /usr/src/examples/dialog-%{version} finden Sie
+anzubieten. Unter %{_examplesdir}/%{name}-%{version} finden Sie
 einige Beispiele.
 
 %description -l fr
 dialog est un utilitaire permettant de construire des interfaces
 utilisateur en mode texte. On peut appeler dialog à partir d'un script
 shell pour poser des questions à l'utilisateur ou lui proposer des
-choix de façon conviviale. Voir /usr/src/examples/dialog-%{version}
+choix de façon conviviale. Voir %{_examplesdir}/%{name}-%{version}
 pour quelques exemples.
 
 %description -l pl
@@ -53,13 +54,14 @@ pracy.
 Dialog, metin ekran için kullanýcý arayüzleri oluþturmayý saðlayan bir
 araçtýr. Kullanýcýya seçenekleri göstermek veya sorular sormak için,
 dialog programýný bir kabuk programcýðý içinden çaðýrabilirsiniz.
-Örnekler için /usr/src/examples/dialog-%{version} dizinine bakýnýz.
+Örnekler için %{_examplesdir}/%{name}-%{version} dizinine bakýnýz.
 
 %package devel
 Summary:	Libraries and headers files for dialog
 Summary(pl):	Biblioteki i pliki nagó³wkowe dla dialog
 Group:		Development/Libraries
-Requires:	%{name} = %{epoch}:%{version}
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	ncurses-devel >= 5.4
 
 %description devel
 Libraries and header files for dialog.
@@ -71,7 +73,7 @@ Biblioteki i pliki nag³ówkowe dla dialog.
 Summary:	Static dialog library
 Summary(pl):	Statyczna biblioteka dialog
 Group:		Development/Libraries
-Requires:	%{name}-devel = %{epoch}:%{version}
+Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description static
 Static dialog library.
@@ -81,7 +83,8 @@ Statyczna biblioteka dialog.
 
 %prep
 %setup -q -n %{name}-%{ver}-%{sdate}
-#patch0 -p1 - example scripts need similar fixes 
+%patch0 -p1
+%patch1 -p1
 
 %build
 %configure \
@@ -94,12 +97,12 @@ Statyczna biblioteka dialog.
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_mandir}/man1,%{_examplesdir}/%{name}}
+install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-cp -a samples/* dialog.pl $RPM_BUILD_ROOT%{_examplesdir}/%{name}
+cp -a samples/* dialog.pl $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT%{_mandir}
 
@@ -113,21 +116,21 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
+%doc CHANGES README
 %attr(755,root,root) %{_bindir}/dialog
-%attr(755,root,root) %{_libdir}/lib*.so.*
+%attr(755,root,root) %{_libdir}/libdialog.so.*.*.*
 %{_mandir}/man1/*
 %lang(hu) %{_mandir}/hu/man1/*
 %lang(pl) %{_mandir}/pl/man1/*
 
 %files devel
 %defattr(644,root,root,755)
-%doc README CHANGES
-%attr(755,root,root) %{_libdir}/lib*.so
-%{_libdir}/lib*.la
-%{_includedir}/*
-%{_mandir}/man3/*
-%attr(- ,root,root) %{_examplesdir}/dialog
+%attr(755,root,root) %{_libdir}/libdialog.so
+%{_libdir}/libdialog.la
+%{_includedir}/*.h
+%{_mandir}/man3/dialog.3*
+%attr(-,root,root) %{_examplesdir}/%{name}-%{version}
 
 %files static
 %defattr(644,root,root,755)
-%{_libdir}/lib*.a
+%{_libdir}/libdialog.a
