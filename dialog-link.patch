@@ -1,0 +1,11 @@
+--- dialog-1.0-20060126/makefile.in.orig	2006-01-18 23:42:18.000000000 +0100
++++ dialog-1.0-20060126/makefile.in	2006-02-19 13:36:09.136867250 +0100
+@@ -107,7 +107,7 @@
+ $(OBJECTS) : $(srcdir)/dialog.h $(srcdir)/dlg_keys.h dlg_config.h VERSION
+ 
+ $(LIB) : $(LIB_OBJECT)
+-	$(LIBTOOL_CREATE) $(LIB) $(LIB_OBJECT)
++	$(LIBTOOL_CREATE) $(LIB) $(LIB_OBJECT) $(LIBS)
+ 	$(RANLIB) $@
+ 
+ dialog$x : $(LIB) dialog$o @INTLDIR_MAKE@ @INTLLIBS@
