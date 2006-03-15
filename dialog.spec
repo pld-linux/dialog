@@ -1,5 +1,5 @@
 %define		ver   1.0
-%define		sdate 20060126
+%define		sdate 20060221
 Summary:	A program to build tty dialog boxes
 Summary(de):	Ein Programm zum Erstellen von tty-Dialogfeldern
 Summary(fr):	Programme pour construire des boîtes de dialogue en mode texte
@@ -12,7 +12,7 @@ Epoch:		1
 License:	LGPL v2.1
 Group:		Applications/Terminal
 Source0:	ftp://invisible-island.net/dialog/%{name}-%{ver}-%{sdate}.tgz
-# Source0-md5:	48dc347ac316fb40bf2ab36d955d0cc7
+# Source0-md5:	acfd843163394e8bb17c841fdbe9c4a4
 Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	932081790cd8aa857822bd2b0eafa5bb
 Patch0:		%{name}-link.patch
