@@ -129,7 +129,31 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libdialog.la
 %{_includedir}/*.h
 %{_mandir}/man3/dialog.3*
-%{_examplesdir}/%{name}-%{version}
+%dir %{_examplesdir}/%{name}-%{version}
+%{_examplesdir}/%{name}-%{version}/README
+%{_examplesdir}/%{name}-%{version}/*.txt
+%{_examplesdir}/%{name}-%{version}/*.??
+%{_examplesdir}/%{name}-%{version}/install
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/[fgkmpry]*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/copismall
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/ca*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/checklist
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/checklist9
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/checklist[!9]*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/in[fp]*
+%{_examplesdir}/%{name}-%{version}/install
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/t[ai]*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/tes*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/textbox
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/textbox[0-9]
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/wheel
+%dir %{_examplesdir}/%{name}-%{version}/copifuncs
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/copifuncs/a*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/copifuncs/[!c]*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/copifuncs/com*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/copifuncs/copi.[!t]*
+%{_examplesdir}/%{name}-%{version}/copifuncs/copi.t*
+%{_examplesdir}/%{name}-%{version}/copifuncs/ifpatch
 
 %files static
 %defattr(644,root,root,755)
