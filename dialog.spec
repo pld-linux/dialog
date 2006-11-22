@@ -148,7 +148,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_examplesdir}/%{name}-%{version}/wheel
 %dir %{_examplesdir}/%{name}-%{version}/copifuncs
 %attr(755,root,root) %{_examplesdir}/%{name}-%{version}/copifuncs/a*
-%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/copifuncs/[!c]*
 %attr(755,root,root) %{_examplesdir}/%{name}-%{version}/copifuncs/com*
 %attr(755,root,root) %{_examplesdir}/%{name}-%{version}/copifuncs/copi.[!t]*
 %{_examplesdir}/%{name}-%{version}/copifuncs/copi.t*
