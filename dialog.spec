@@ -141,7 +141,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_examplesdir}/%{name}-%{version}/checklist9
 %attr(755,root,root) %{_examplesdir}/%{name}-%{version}/checklist[!9]*
 %attr(755,root,root) %{_examplesdir}/%{name}-%{version}/in[fp]*
-%{_examplesdir}/%{name}-%{version}/install
 %attr(755,root,root) %{_examplesdir}/%{name}-%{version}/t[ai]*
 %attr(755,root,root) %{_examplesdir}/%{name}-%{version}/tes*
 %attr(755,root,root) %{_examplesdir}/%{name}-%{version}/textbox
