@@ -146,6 +146,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_examplesdir}/%{name}-%{version}/textbox
 %attr(755,root,root) %{_examplesdir}/%{name}-%{version}/textbox[0-9]
 %attr(755,root,root) %{_examplesdir}/%{name}-%{version}/wheel
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/listing
 %dir %{_examplesdir}/%{name}-%{version}/copifuncs
 %attr(755,root,root) %{_examplesdir}/%{name}-%{version}/copifuncs/a*
 %attr(755,root,root) %{_examplesdir}/%{name}-%{version}/copifuncs/com*
