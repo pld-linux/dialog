@@ -129,7 +129,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libdialog.la
 %{_includedir}/*.h
 %{_mandir}/man3/dialog.3*
-%attr(-,root,root) %{_examplesdir}/%{name}-%{version}
+%{_examplesdir}/%{name}-%{version}
 
 %files static
 %defattr(644,root,root,755)
