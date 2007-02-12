@@ -1,10 +1,10 @@
 %define		ver   1.0
 %define		sdate 20060221
 Summary:	A program to build tty dialog boxes
-Summary(de.UTF-8):   Ein Programm zum Erstellen von tty-Dialogfeldern
-Summary(fr.UTF-8):   Programme pour construire des boîtes de dialogue en mode texte
-Summary(pl.UTF-8):   Dialog tworzy okienkowy interfejs użytkownika na terminalu tekstowym
-Summary(tr.UTF-8):   tty diyalog kutuları oluşturan bir program
+Summary(de.UTF-8):	Ein Programm zum Erstellen von tty-Dialogfeldern
+Summary(fr.UTF-8):	Programme pour construire des boîtes de dialogue en mode texte
+Summary(pl.UTF-8):	Dialog tworzy okienkowy interfejs użytkownika na terminalu tekstowym
+Summary(tr.UTF-8):	tty diyalog kutuları oluşturan bir program
 Name:		dialog
 Version:	%{ver}.%{sdate}
 Release:	0.9
@@ -58,7 +58,7 @@ dialog programını bir kabuk programcığı içinden çağırabilirsiniz.
 
 %package devel
 Summary:	Libraries and headers files for dialog
-Summary(pl.UTF-8):   Biblioteki i pliki nagółwkowe dla dialog
+Summary(pl.UTF-8):	Biblioteki i pliki nagółwkowe dla dialog
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	ncurses-devel >= 5.4
@@ -71,7 +71,7 @@ Biblioteki i pliki nagłówkowe dla dialog.
 
 %package static
 Summary:	Static dialog library
-Summary(pl.UTF-8):   Statyczna biblioteka dialog
+Summary(pl.UTF-8):	Statyczna biblioteka dialog
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
