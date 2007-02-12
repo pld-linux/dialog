@@ -1,10 +1,10 @@
 %define		ver   1.0
 %define		sdate 20060221
 Summary:	A program to build tty dialog boxes
-Summary(de):	Ein Programm zum Erstellen von tty-Dialogfeldern
-Summary(fr):	Programme pour construire des boÓtes de dialogue en mode texte
-Summary(pl):	Dialog tworzy okienkowy interfejs uøytkownika na terminalu tekstowym
-Summary(tr):	tty diyalog kutular˝ olu˛turan bir program
+Summary(de.UTF-8):   Ein Programm zum Erstellen von tty-Dialogfeldern
+Summary(fr.UTF-8):   Programme pour construire des bo√Ætes de dialogue en mode texte
+Summary(pl.UTF-8):   Dialog tworzy okienkowy interfejs u≈ºytkownika na terminalu tekstowym
+Summary(tr.UTF-8):   tty diyalog kutularƒ± olu≈üturan bir program
 Name:		dialog
 Version:	%{ver}.%{sdate}
 Release:	0.9
@@ -29,36 +29,36 @@ Dialog is a utility that allows you to build user interfaces in a TTY
 ask the user questions or present with choices in a more user friendly
 manner.
 
-%description -l de
+%description -l de.UTF-8
 Dialog ist ein Dienstprogramm, das das Erstellen einer
-Benutzeroberfl‰che in einem TTY ermˆglicht (nur Textmodus). Sie kˆnnen
+Benutzeroberfl√§che in einem TTY erm√∂glicht (nur Textmodus). Sie k√∂nnen
 dialog mit einem Shell-Script aufrufen, um dem Benutzer auf
 benutzerfreundliche Weise Fragen zu stellen oder eine Auswahl
 anzubieten. Unter %{_examplesdir}/%{name}-%{version} finden Sie
 einige Beispiele.
 
-%description -l fr
+%description -l fr.UTF-8
 dialog est un utilitaire permettant de construire des interfaces
-utilisateur en mode texte. On peut appeler dialog ‡ partir d'un script
-shell pour poser des questions ‡ l'utilisateur ou lui proposer des
-choix de faÁon conviviale. Voir %{_examplesdir}/%{name}-%{version}
+utilisateur en mode texte. On peut appeler dialog √† partir d'un script
+shell pour poser des questions √† l'utilisateur ou lui proposer des
+choix de fa√ßon conviviale. Voir %{_examplesdir}/%{name}-%{version}
 pour quelques exemples.
 
-%description -l pl
-Dialog jest narzÍdziem umoøliwiaj±cym stworzenie przyjaznego
-interfejsu uøytkownika na terminalu pracuj±cym w trybie tekstowym. Do
-programu do≥±czone s± przyk≥adowe skrypty, u≥atwiaj±ce rozpoczÍcie
+%description -l pl.UTF-8
+Dialog jest narzƒôdziem umo≈ºliwiajƒÖcym stworzenie przyjaznego
+interfejsu u≈ºytkownika na terminalu pracujƒÖcym w trybie tekstowym. Do
+programu do≈ÇƒÖczone sƒÖ przyk≈Çadowe skrypty, u≈ÇatwiajƒÖce rozpoczƒôcie
 pracy.
 
-%description -l tr
-Dialog, metin ekran iÁin kullan˝c˝ aray¸zleri olu˛turmay˝ salayan bir
-araÁt˝r. Kullan˝c˝ya seÁenekleri gˆstermek veya sorular sormak iÁin,
-dialog program˝n˝ bir kabuk programc˝˝ iÁinden Áa˝rabilirsiniz.
-÷rnekler iÁin %{_examplesdir}/%{name}-%{version} dizinine bak˝n˝z.
+%description -l tr.UTF-8
+Dialog, metin ekran i√ßin kullanƒ±cƒ± aray√ºzleri olu≈üturmayƒ± saƒülayan bir
+ara√ßtƒ±r. Kullanƒ±cƒ±ya se√ßenekleri g√∂stermek veya sorular sormak i√ßin,
+dialog programƒ±nƒ± bir kabuk programcƒ±ƒüƒ± i√ßinden √ßaƒüƒ±rabilirsiniz.
+√ñrnekler i√ßin %{_examplesdir}/%{name}-%{version} dizinine bakƒ±nƒ±z.
 
 %package devel
 Summary:	Libraries and headers files for dialog
-Summary(pl):	Biblioteki i pliki nagÛ≥wkowe dla dialog
+Summary(pl.UTF-8):   Biblioteki i pliki nag√≥≈Çwkowe dla dialog
 Group:		Development/Libraries
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	ncurses-devel >= 5.4
@@ -66,19 +66,19 @@ Requires:	ncurses-devel >= 5.4
 %description devel
 Libraries and header files for dialog.
 
-%description devel -l pl
-Biblioteki i pliki nag≥Ûwkowe dla dialog.
+%description devel -l pl.UTF-8
+Biblioteki i pliki nag≈Ç√≥wkowe dla dialog.
 
 %package static
 Summary:	Static dialog library
-Summary(pl):	Statyczna biblioteka dialog
+Summary(pl.UTF-8):   Statyczna biblioteka dialog
 Group:		Development/Libraries
 Requires:	%{name}-devel = %{epoch}:%{version}-%{release}
 
 %description static
 Static dialog library.
 
-%description static -l pl
+%description static -l pl.UTF-8
 Statyczna biblioteka dialog.
 
 %prep
