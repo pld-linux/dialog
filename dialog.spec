@@ -7,7 +7,7 @@ Summary(pl.UTF-8):	Dialog tworzy okienkowy interfejs użytkownika na terminalu t
 Summary(tr.UTF-8):	tty diyalog kutuları oluşturan bir program
 Name:		dialog
 Version:	%{ver}.%{sdate}
-Release:	0.9
+Release:	1
 Epoch:		1
 License:	LGPL v2.1
 Group:		Applications/Terminal
