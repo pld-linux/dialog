@@ -118,13 +118,14 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc CHANGES README
 %attr(755,root,root) %{_bindir}/dialog
-%attr(755,root,root) %{_libdir}/libdialog.so.*.*.*
+%attr(755,root,root) %{_libdir}/libdialog.so.*
 %{_mandir}/man1/*
 %lang(hu) %{_mandir}/hu/man1/*
 %lang(pl) %{_mandir}/pl/man1/*
 
 %files devel
 %defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/dialog-config
 %attr(755,root,root) %{_libdir}/libdialog.so
 %{_libdir}/libdialog.la
 %{_includedir}/*.h
