@@ -1,5 +1,5 @@
-%define		ver   1.0
-%define		sdate 20060221
+%define		ver	1.1
+%define		sdate	20080819
 Summary:	A program to build tty dialog boxes
 Summary(de.UTF-8):	Ein Programm zum Erstellen von tty-Dialogfeldern
 Summary(fr.UTF-8):	Programme pour construire des boîtes de dialogue en mode texte
@@ -7,12 +7,12 @@ Summary(pl.UTF-8):	Dialog tworzy okienkowy interfejs użytkownika na terminalu t
 Summary(tr.UTF-8):	tty diyalog kutuları oluşturan bir program
 Name:		dialog
 Version:	%{ver}.%{sdate}
-Release:	2
+Release:	1
 Epoch:		1
 License:	LGPL v2.1
 Group:		Applications/Terminal
 Source0:	ftp://invisible-island.net/dialog/%{name}-%{ver}-%{sdate}.tgz
-# Source0-md5:	acfd843163394e8bb17c841fdbe9c4a4
+# Source0-md5:	3caebd641a9f337b980becb4444336c5
 Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	932081790cd8aa857822bd2b0eafa5bb
 Patch0:		%{name}-link.patch
@@ -153,6 +153,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_examplesdir}/%{name}-%{version}/copifuncs/copi.[!t]*
 %{_examplesdir}/%{name}-%{version}/copifuncs/copi.t*
 %{_examplesdir}/%{name}-%{version}/copifuncs/ifpatch
+%{_examplesdir}/%{name}-%{version}/dselect
+%{_examplesdir}/%{name}-%{version}/editbox*
 
 %files static
 %defattr(644,root,root,755)
