@@ -17,6 +17,7 @@ Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-ma
 # Source1-md5:	932081790cd8aa857822bd2b0eafa5bb
 Patch0:		%{name}-link.patch
 Patch1:		%{name}-pl.po-update.patch
+Patch2:		libtool.patch
 URL:		http://invisible-island.net/dialog/dialog.html
 BuildRequires:	gettext-devel
 BuildRequires:	ncurses-devel >= 5.4
@@ -85,6 +86,8 @@ Statyczna biblioteka dialog.
 %setup -q -n %{name}-%{ver}-%{sdate}
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+mv aclocal.m4 acinclude.m4
 
 %build
 %configure \
@@ -118,7 +121,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc CHANGES README
 %attr(755,root,root) %{_bindir}/dialog
-%attr(755,root,root) %{_libdir}/libdialog.so.*
+%attr(755,root,root) %{_libdir}/libdialog.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libdialog.so.6
 %{_mandir}/man1/*
 %lang(hu) %{_mandir}/hu/man1/*
 %lang(pl) %{_mandir}/pl/man1/*
