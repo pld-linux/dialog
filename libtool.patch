@@ -1,0 +1,38 @@
+--- dialog-1.1-20080819/aclocal.m4~	2007-07-04 22:37:45.000000000 +0300
++++ dialog-1.1-20080819/aclocal.m4	2009-07-20 01:59:52.548835437 +0300
+@@ -3071,12 +3071,12 @@
+  		AC_MSG_ERROR(Cannot find libtool)
+  	fi
+ ])dnl
+-	LIB_CREATE='${LIBTOOL} --mode=link ${CC} -rpath ${DESTDIR}${libdir} -version-info `cut -f1 ${srcdir}/VERSION` ${LIBTOOL_OPTS} -o'
++	LIB_CREATE='${LIBTOOL} --mode=link --tag=CC ${CC} -rpath ${DESTDIR}${libdir} -version-info `cut -f1 ${srcdir}/VERSION` ${LIBTOOL_OPTS} -o'
+ 	LIB_OBJECT='${OBJECTS:.o=.lo}'
+ 	LIB_SUFFIX=.la
+ 	LIB_CLEAN='${LIBTOOL} --mode=clean'
+-	LIB_COMPILE='${LIBTOOL} --mode=compile'
+-	LIB_LINK='${LIBTOOL} --mode=link ${CC} ${LIBTOOL_OPTS}'
++	LIB_COMPILE='${LIBTOOL} --mode=compile --tag=CC'
++	LIB_LINK='${LIBTOOL} --mode=link --tag=CC ${CC} ${LIBTOOL_OPTS}'
+ 	LIB_INSTALL='${LIBTOOL} --mode=install'
+ 	LIB_UNINSTALL='${LIBTOOL} --mode=uninstall'
+ 	LIB_PREP=:
+
+the regeneration is fcked up (i wonder how did the upstream regenerates stuff) so patch the configure script too
+--- dialog-1.1-20080819/configure~	2008-03-16 20:54:16.000000000 +0200
++++ dialog-1.1-20080819/configure	2009-07-20 02:26:24.085085686 +0300
+@@ -7217,12 +7217,12 @@
+ echo "$as_me: error: Cannot find libtool" >&2;}
+    { (exit 1); exit 1; }; }
+  	fi
+-	LIB_CREATE='${LIBTOOL} --mode=link ${CC} -rpath ${DESTDIR}${libdir} -version-info `cut -f1 ${srcdir}/VERSION` ${LIBTOOL_OPTS} -o'
++	LIB_CREATE='${LIBTOOL} --mode=link --tag=CC ${CC} -rpath ${DESTDIR}${libdir} -version-info `cut -f1 ${srcdir}/VERSION` ${LIBTOOL_OPTS} -o'
+ 	LIB_OBJECT='${OBJECTS:.o=.lo}'
+ 	LIB_SUFFIX=.la
+ 	LIB_CLEAN='${LIBTOOL} --mode=clean'
+-	LIB_COMPILE='${LIBTOOL} --mode=compile'
+-	LIB_LINK='${LIBTOOL} --mode=link ${CC} ${LIBTOOL_OPTS}'
++	LIB_COMPILE='${LIBTOOL} --mode=compile --tag=CC'
++	LIB_LINK='${LIBTOOL} --mode=link --tag=CC ${CC} ${LIBTOOL_OPTS}'
+ 	LIB_INSTALL='${LIBTOOL} --mode=install'
+ 	LIB_UNINSTALL='${LIBTOOL} --mode=uninstall'
+ 	LIB_PREP=:
