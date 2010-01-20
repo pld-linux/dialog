@@ -1,5 +1,5 @@
 %define		ver	1.1
-%define		sdate	20080819
+%define		sdate	20100119
 Summary:	A program to build tty dialog boxes
 Summary(de.UTF-8):	Ein Programm zum Erstellen von tty-Dialogfeldern
 Summary(fr.UTF-8):	Programme pour construire des boîtes de dialogue en mode texte
@@ -12,16 +12,15 @@ Epoch:		1
 License:	LGPL v2.1
 Group:		Applications/Terminal
 Source0:	ftp://invisible-island.net/dialog/%{name}-%{ver}-%{sdate}.tgz
-# Source0-md5:	3caebd641a9f337b980becb4444336c5
+# Source0-md5:	ada629276646b462aaab1e734f626eb6
 Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	932081790cd8aa857822bd2b0eafa5bb
 Patch0:		%{name}-link.patch
-Patch1:		%{name}-pl.po-update.patch
-Patch2:		libtool.patch
+Patch1:		libtool.patch
 URL:		http://invisible-island.net/dialog/dialog.html
 BuildRequires:	gettext-devel
-BuildRequires:	ncurses-devel >= 5.4
 BuildRequires:	libtool
+BuildRequires:	ncurses-devel >= 5.4
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -35,8 +34,8 @@ Dialog ist ein Dienstprogramm, das das Erstellen einer
 Benutzeroberfläche in einem TTY ermöglicht (nur Textmodus). Sie können
 dialog mit einem Shell-Script aufrufen, um dem Benutzer auf
 benutzerfreundliche Weise Fragen zu stellen oder eine Auswahl
-anzubieten. Unter %{_examplesdir}/%{name}-%{version} finden Sie
-einige Beispiele.
+anzubieten. Unter %{_examplesdir}/%{name}-%{version} finden Sie einige
+Beispiele.
 
 %description -l fr.UTF-8
 dialog est un utilitaire permettant de construire des interfaces
@@ -86,7 +85,6 @@ Statyczna biblioteka dialog.
 %setup -q -n %{name}-%{ver}-%{sdate}
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 mv aclocal.m4 acinclude.m4
 
 %build
@@ -122,7 +120,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc CHANGES README
 %attr(755,root,root) %{_bindir}/dialog
 %attr(755,root,root) %{_libdir}/libdialog.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libdialog.so.6
+%attr(755,root,root) %ghost %{_libdir}/libdialog.so.7
 %{_mandir}/man1/*
 %lang(hu) %{_mandir}/hu/man1/*
 %lang(pl) %{_mandir}/pl/man1/*
