@@ -16,7 +16,6 @@ Source0:	ftp://invisible-island.net/dialog/%{name}-%{ver}-%{sdate}.tgz
 Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	932081790cd8aa857822bd2b0eafa5bb
 Patch0:		%{name}-link.patch
-Patch1:		libtool.patch
 URL:		http://invisible-island.net/dialog/dialog.html
 BuildRequires:	gettext-devel
 BuildRequires:	libtool
@@ -84,15 +83,13 @@ Statyczna biblioteka dialog.
 %prep
 %setup -q -n %{name}-%{ver}-%{sdate}
 %patch0 -p1
-#%patch1 -p1
-mv aclocal.m4 acinclude.m4
 
 %build
 %configure \
 	--with-libtool \
 	--with-ncursesw \
-	--enable-widec \
-	--enable-nls
+	--enable-nls \
+	--enable-widec
 
 %{__make}
 
@@ -121,16 +118,17 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/dialog
 %attr(755,root,root) %{_libdir}/libdialog.so.*.*.*
 %attr(755,root,root) %ghost %{_libdir}/libdialog.so.11
-%{_mandir}/man1/*
-%lang(hu) %{_mandir}/hu/man1/*
-%lang(pl) %{_mandir}/pl/man1/*
+%{_mandir}/man1/dialog.1*
+%lang(hu) %{_mandir}/hu/man1/dialog.1*
+%lang(pl) %{_mandir}/pl/man1/dialog.1*
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/dialog-config
 %attr(755,root,root) %{_libdir}/libdialog.so
 %{_libdir}/libdialog.la
-%{_includedir}/*.h
+%{_includedir}/dialog.h
+%{_includedir}/dlg_*.h
 %{_mandir}/man3/dialog.3*
 %dir %{_examplesdir}/%{name}-%{version}
 %{_examplesdir}/%{name}-%{version}/README
