@@ -1,5 +1,5 @@
-%define		ver	1.1
-%define		sdate	20100428
+%define		ver	1.2
+%define		sdate	20130523
 Summary:	A program to build tty dialog boxes
 Summary(de.UTF-8):	Ein Programm zum Erstellen von tty-Dialogfeldern
 Summary(fr.UTF-8):	Programme pour construire des boîtes de dialogue en mode texte
@@ -7,12 +7,12 @@ Summary(pl.UTF-8):	Dialog tworzy okienkowy interfejs użytkownika na terminalu t
 Summary(tr.UTF-8):	tty diyalog kutuları oluşturan bir program
 Name:		dialog
 Version:	%{ver}.%{sdate}
-Release:	2
+Release:	1
 Epoch:		1
 License:	LGPL v2.1
 Group:		Applications/Terminal
 Source0:	ftp://invisible-island.net/dialog/%{name}-%{ver}-%{sdate}.tgz
-# Source0-md5:	519c0a0cbac28ddb992111ec2c3f82aa
+# Source0-md5:	f79a2fd46b918f6a2802444415ad3795
 Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	932081790cd8aa857822bd2b0eafa5bb
 Patch0:		%{name}-link.patch
@@ -84,7 +84,7 @@ Statyczna biblioteka dialog.
 %prep
 %setup -q -n %{name}-%{ver}-%{sdate}
 %patch0 -p1
-%patch1 -p1
+#%patch1 -p1
 mv aclocal.m4 acinclude.m4
 
 %build
@@ -120,7 +120,7 @@ rm -rf $RPM_BUILD_ROOT
 %doc CHANGES README
 %attr(755,root,root) %{_bindir}/dialog
 %attr(755,root,root) %{_libdir}/libdialog.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libdialog.so.7
+%attr(755,root,root) %ghost %{_libdir}/libdialog.so.11
 %{_mandir}/man1/*
 %lang(hu) %{_mandir}/hu/man1/*
 %lang(pl) %{_mandir}/pl/man1/*
@@ -135,29 +135,47 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_examplesdir}/%{name}-%{version}
 %{_examplesdir}/%{name}-%{version}/README
 %{_examplesdir}/%{name}-%{version}/*.txt
-%{_examplesdir}/%{name}-%{version}/*.??
-%{_examplesdir}/%{name}-%{version}/install
-%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/[fgkmpry]*
-%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/copismall
-%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/ca*
+%{_examplesdir}/%{name}-%{version}/*.rc
+%{_examplesdir}/%{name}-%{version}/dialog*
+%{_examplesdir}/%{name}-%{version}/report*
+%{_examplesdir}/%{name}-%{version}/setup*
+%{_examplesdir}/%{name}-%{version}/testdata-8bit
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/buildlist*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/calendar*
 %attr(755,root,root) %{_examplesdir}/%{name}-%{version}/checklist
 %attr(755,root,root) %{_examplesdir}/%{name}-%{version}/checklist9
 %attr(755,root,root) %{_examplesdir}/%{name}-%{version}/checklist[!9]*
-%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/in[fp]*
-%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/t[ai]*
-%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/tes*
-%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/textbox
-%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/textbox[0-9]
-%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/wheel
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/dft*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/editbox*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/form*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/fselect*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/gauge*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/infobox*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/inputbox*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/inputmenu*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/killall
 %attr(755,root,root) %{_examplesdir}/%{name}-%{version}/listing
-%dir %{_examplesdir}/%{name}-%{version}/copifuncs
-%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/copifuncs/a*
-%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/copifuncs/com*
-%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/copifuncs/copi.[!t]*
-%{_examplesdir}/%{name}-%{version}/copifuncs/copi.t*
-%{_examplesdir}/%{name}-%{version}/copifuncs/ifpatch
-%{_examplesdir}/%{name}-%{version}/dselect
-%{_examplesdir}/%{name}-%{version}/editbox*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/menubox*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/mixedform*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/mixedgauge
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/msgbox*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/password*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/pause*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/prgbox*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/programbox*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/progress*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/radiolist*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/rangebox*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/rotated-data
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/shortlist
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/tailbox*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/textbox
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/textbox[0-9\-]*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/timebox*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/treeview*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/wheel
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/with*
+%attr(755,root,root) %{_examplesdir}/%{name}-%{version}/yesno*
 
 %files static
 %defattr(644,root,root,755)
