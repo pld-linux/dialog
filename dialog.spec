@@ -15,7 +15,6 @@ Source0:	ftp://invisible-island.net/dialog/%{name}-%{ver}-%{sdate}.tgz
 # Source0-md5:	2cf55cd9d4603ffdb4b24cd6843d740c
 Source1:	http://www.mif.pg.gda.pl/homepages/ankry/man-PLD/%{name}-non-english-man-pages.tar.bz2
 # Source1-md5:	932081790cd8aa857822bd2b0eafa5bb
-Patch0:		%{name}-link.patch
 URL:		http://invisible-island.net/dialog/dialog.html
 BuildRequires:	gettext-devel
 BuildRequires:	libtool
@@ -82,7 +81,6 @@ Statyczna biblioteka dialog.
 
 %prep
 %setup -q -n %{name}-%{ver}-%{sdate}
-#%patch0 -p1
 
 %build
 %configure \
